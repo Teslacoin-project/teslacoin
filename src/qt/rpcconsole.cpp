@@ -75,8 +75,8 @@ bool parseCommandLine(std::vector<std::string> &args, const std::string &strComm
         STATE_ARGUMENT,
         STATE_SINGLEQUOTED,
         STATE_DOUBLEQUOTED,
-        STATE_ESCAPE_OUTER,
-        STATE_ESCAPE_DOUBLEQUOTED
+        STATE_ESCASHE_OUTER,
+        STATE_ESCASHE_DOUBLEQUOTED
     } state = STATE_EATING_SPACES;
     std::string curarg;
     foreach(char ch, strCommand)
@@ -89,7 +89,7 @@ bool parseCommandLine(std::vector<std::string> &args, const std::string &strComm
             {
             case '"': state = STATE_DOUBLEQUOTED; break;
             case '\'': state = STATE_SINGLEQUOTED; break;
-            case '\\': state = STATE_ESCAPE_OUTER; break;
+            case '\\': state = STATE_ESCASHE_OUTER; break;
             case ' ': case '\n': case '\t':
                 if(state == STATE_ARGUMENT) // Space ends argument
                 {
@@ -112,14 +112,14 @@ bool parseCommandLine(std::vector<std::string> &args, const std::string &strComm
             switch(ch)
             {
             case '"': state = STATE_ARGUMENT; break;
-            case '\\': state = STATE_ESCAPE_DOUBLEQUOTED; break;
+            case '\\': state = STATE_ESCASHE_DOUBLEQUOTED; break;
             default: curarg += ch;
             }
             break;
-        case STATE_ESCAPE_OUTER: // '\' outside quotes
+        case STATE_ESCASHE_OUTER: // '\' outside quotes
             curarg += ch; state = STATE_ARGUMENT;
             break;
-        case STATE_ESCAPE_DOUBLEQUOTED: // '\' in double-quoted text
+        case STATE_ESCASHE_DOUBLEQUOTED: // '\' in double-quoted text
             if(ch != '"' && ch != '\\') curarg += '\\'; // keep '\' for everything but the quote and '\' itself
             curarg += ch; state = STATE_DOUBLEQUOTED;
             break;

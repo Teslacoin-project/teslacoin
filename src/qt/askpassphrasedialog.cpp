@@ -223,9 +223,9 @@ bool AskPassphraseDialog::event(QEvent *event)
 
 bool AskPassphraseDialog::eventFilter(QObject *object, QEvent *event)
 {
-    /* Detect Caps Lock.
+    /* Detect caps Lock.
      * There is no good OS-independent way to check a key state in Qt, but we
-     * can detect Caps Lock by checking for the following condition:
+     * can detect caps Lock by checking for the following condition:
      * Shift key is down and the result is a lower case character, or
      * Shift key is not down and the result is an upper case character.
      */
