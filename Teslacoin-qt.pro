@@ -109,7 +109,6 @@ HEADERS += src/qt/bitcoingui.h \
     src/qt/sendcoinsdialog.h \
 	src/qt/coincontroldialog.h \
 	src/qt/coincontroltreewidget.h \
-
     src/qt/addressbookpage.h \
     src/qt/signverifymessagedialog.h \
     src/qt/aboutdialog.h \
