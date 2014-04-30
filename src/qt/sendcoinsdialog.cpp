@@ -32,7 +32,7 @@ SendCoinsDialog::SendCoinsDialog(QWidget *parent) :
 
 #if QT_VERSION >= 0x040700
     /* Do not move this to the XML file, Qt before 4.7 will choke on it */
-    ui->lineEditCoinControlChange->setPlaceholderText(tr("Enter a Cash address (e.g. YFJpVxeBAu1romfLQGxC3JvZ6SCsuoE1mU)"));
+    ui->lineEditCoinControlChange->setPlaceholderText(tr("Enter a TES address (e.g. 5FJpVxeBAu1romfLQGxC3JvZ6SCsuoE1mU)"));
 #endif
  
     addEntry();
@@ -456,7 +456,7 @@ void SendCoinsDialog::coinControlChangeEdited(const QString & text)
         else if (!CBitcoinAddress(text.toStdString()).IsValid())
         {
             ui->labelCoinControlChangeLabel->setStyleSheet("QLabel{color:red;}");
-            ui->labelCoinControlChangeLabel->setText(tr("WARNING: Invalid Cash address"));
+            ui->labelCoinControlChangeLabel->setText(tr("WARNING: Invalid Teslacoin address"));
         }
         else
         {
