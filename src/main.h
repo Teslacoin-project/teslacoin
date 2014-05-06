@@ -35,10 +35,13 @@ static const int64 MIN_RELAY_TX_FEE = 0.1 * CENT;
 static const int64 MAX_MONEY = 299792458 * COIN; //Max initial coins 299,792,458
 static const int64 MAX_MINT_PROOF_OF_WORK = 9000000 * COIN;
 static const int64 MAX_MINT_PROOF_OF_WORK_LEGACY = 9000000 * COIN;
+
 static const int64 MAX_MINT_PROOF_OF_STAKE = 1 * CENT;
 
 static const int64 MIN_TXOUT_AMOUNT = MIN_TX_FEE;
 static const unsigned int PROTOCOL_SWITCH_TIME = 1371686400; // 20 Jun 2013 00:00:00
+
+static const unsigned int STAKE_SWITCH_TIME = 1400248453; // Fri, 16 May 2014 13:54:13 GMT
 
 static const unsigned int REWARD_SWITCH_TIME = 1369432800; // 25 May 2013 00:00:00
 
@@ -595,7 +598,7 @@ public:
         return dPriority > COIN * 120 / 250;
     }
 
-    int64 GetMinFee(unsigned int nBlockSize=1, bool fAllowFree=false, enum GetMinFee_mode mode=GMF_BLOCK) const;
+   int64 GetMinFee(unsigned int nBlockSize=1, bool fAllowFree=true, enum GetMinFee_mode mode=GMF_BLOCK, unsigned int nBytes=0) const;
 
     bool ReadFromDisk(CDiskTxPos pos, FILE** pfileRet=NULL)
     {
