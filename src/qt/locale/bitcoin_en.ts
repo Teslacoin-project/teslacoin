@@ -6,18 +6,18 @@
     <name>AboutDialog</name>
     <message>
         <location filename="../forms/aboutdialog.ui" line="+14"/>
-        <source>About CryptogenicBullion</source>
-        <translation>About CryptogenicBullion</translation>
+        <source>About Teslacoin</source>
+        <translation>About Teslacoin</translation>
     </message>
     <message>
         <location line="+39"/>
-        <source>&lt;b&gt;CryptogenicBullion&lt;/b&gt; version</source>
-        <translation>&lt;b&gt;CryptogenicBullion&lt;/b&gt; version</translation>
+        <source>&lt;b&gt;Teslacoin&lt;/b&gt; version</source>
+        <translation>&lt;b&gt;Teslacoin&lt;/b&gt; version</translation>
     </message>
     <message>
         <location line="+41"/>
-        <source>Copyright © 2009-2012 The CryptogenicBullion developers</source>
-        <translation>Copyright © 2009-2012 The CryptogenicBullion developers</translation>
+        <source>Copyright © 2009-2012 The Teslacoin developers</source>
+        <translation>Copyright © 2009-2012 The Teslacoin developers</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -64,8 +64,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-46"/>
-        <source>These are your CryptogenicBullion addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
-        <translation>These are your CryptogenicBullion addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</translation>
+        <source>These are your Teslacoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
+        <translation>These are your Teslacoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</translation>
     </message>
     <message>
         <location line="+60"/>
@@ -79,8 +79,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+11"/>
-        <source>Sign a message to prove you own a CryptogenicBullion address</source>
-        <translation>Sign a message to prove you own a CryptogenicBullion address</translation>
+        <source>Sign a message to prove you own a Teslacoin address</source>
+        <translation>Sign a message to prove you own a Teslacoin address</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -94,8 +94,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-14"/>
-        <source>Verify a message to ensure it was signed with a specified CryptogenicBullion address</source>
-        <translation>Verify a message to ensure it was signed with a specified CryptogenicBullion address</translation>
+        <source>Verify a message to ensure it was signed with a specified Teslacoin address</source>
+        <translation>Verify a message to ensure it was signed with a specified Teslacoin address</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -252,8 +252,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-56"/>
-        <source>CryptogenicBullion will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
-        <translation>CryptogenicBullion will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</translation>
+        <source>Teslacoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
+        <translation>Teslacoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -366,8 +366,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+4"/>
-        <source>Show information about CryptogenicBullion</source>
-        <translation>Show information about CryptogenicBullion</translation>
+        <source>Show information about Teslacoin</source>
+        <translation>Show information about Teslacoin</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -419,13 +419,13 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-58"/>
-        <source>Send coins to a CryptogenicBullion address</source>
-        <translation>Send coins to a CryptogenicBullion address</translation>
+        <source>Send coins to a Teslacoin address</source>
+        <translation>Send coins to a Teslacoin address</translation>
     </message>
     <message>
         <location line="+45"/>
-        <source>Modify configuration options for CryptogenicBullion</source>
-        <translation>Modify configuration options for CryptogenicBullion</translation>
+        <source>Modify configuration options for Teslacoin</source>
+        <translation>Modify configuration options for Teslacoin</translation>
     </message>
     <message>
         <location line="+14"/>
@@ -464,8 +464,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-186"/>
-        <source>CryptogenicBullion</source>
-        <translation>CryptogenicBullion</translation>
+        <source>Teslacoin</source>
+        <translation>Teslacoin</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -474,8 +474,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+168"/>
-        <source>&amp;About CryptogenicBullion</source>
-        <translation>&amp;About CryptogenicBullion</translation>
+        <source>&amp;About Teslacoin</source>
+        <translation>&amp;About Teslacoin</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -516,15 +516,15 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+0"/>
         <location line="+60"/>
-        <source>CryptogenicBullion client</source>
-        <translation>CryptogenicBullion client</translation>
+        <source>Teslacoin client</source>
+        <translation>Teslacoin client</translation>
     </message>
     <message numerus="yes">
         <location line="+69"/>
-        <source>%n active connection(s) to CryptogenicBullion network</source>
+        <source>%n active connection(s) to Teslacoin network</source>
         <translation>
-            <numerusform>%n active connection to CryptogenicBullion network</numerusform>
-            <numerusform>%n active connections to CryptogenicBullion network</numerusform>
+            <numerusform>%n active connection to Teslacoin network</numerusform>
+            <numerusform>%n active connections to Teslacoin network</numerusform>
         </translation>
     </message>
     <message>
@@ -621,8 +621,8 @@ Address: %4
     <message>
         <location line="-15"/>
         <location line="+15"/>
-        <source>URI can not be parsed! This can be caused by an invalid CryptogenicBullion address or malformed URI parameters.</source>
-        <translation>URI can not be parsed! This can be caused by an invalid CryptogenicBullion address or malformed URI parameters.</translation>
+        <source>URI can not be parsed! This can be caused by an invalid Teslacoin address or malformed URI parameters.</source>
+        <translation>URI can not be parsed! This can be caused by an invalid Teslacoin address or malformed URI parameters.</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -656,8 +656,8 @@ Address: %4
     </message>
     <message>
         <location filename="../bitcoin.cpp" line="+109"/>
-        <source>A fatal error occurred. CryptogenicBullion can no longer continue safely and will quit.</source>
-        <translation>A fatal error occurred. CryptogenicBullion can no longer continue safely and will quit.</translation>
+        <source>A fatal error occurred. Teslacoin can no longer continue safely and will quit.</source>
+        <translation>A fatal error occurred. Teslacoin can no longer continue safely and will quit.</translation>
     </message>
 </context>
 <context>
@@ -722,8 +722,8 @@ Address: %4
     </message>
     <message>
         <location line="+5"/>
-        <source>The entered address &quot;%1&quot; is not a valid CryptogenicBullion address.</source>
-        <translation>The entered address &quot;%1&quot; is not a valid CryptogenicBullion address.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Teslacoin address.</source>
+        <translation>The entered address &quot;%1&quot; is not a valid Teslacoin address.</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -741,8 +741,8 @@ Address: %4
     <message>
         <location filename="../guiutil.cpp" line="+419"/>
         <location line="+12"/>
-        <source>CryptogenicBullion-Qt</source>
-        <translation>CryptogenicBullion-Qt</translation>
+        <source>Teslacoin-Qt</source>
+        <translation>Teslacoin-Qt</translation>
     </message>
     <message>
         <location line="-12"/>
@@ -804,13 +804,13 @@ Address: %4
     </message>
     <message>
         <location line="+31"/>
-        <source>Automatically start CryptogenicBullion after logging in to the system.</source>
-        <translation>Automatically start CryptogenicBullion after logging in to the system.</translation>
+        <source>Automatically start Teslacoin after logging in to the system.</source>
+        <translation>Automatically start Teslacoin after logging in to the system.</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>&amp;Start CryptogenicBullion on system login</source>
-        <translation>&amp;Start CryptogenicBullion on system login</translation>
+        <source>&amp;Start Teslacoin on system login</source>
+        <translation>&amp;Start Teslacoin on system login</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -829,8 +829,8 @@ Address: %4
     </message>
     <message>
         <location line="+6"/>
-        <source>Automatically open the CryptogenicBullion client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automatically open the CryptogenicBullion client port on the router. This only works when your router supports UPnP and it is enabled.</translation>
+        <source>Automatically open the Teslacoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automatically open the Teslacoin client port on the router. This only works when your router supports UPnP and it is enabled.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -839,8 +839,8 @@ Address: %4
     </message>
     <message>
         <location line="+7"/>
-        <source>Connect to the CryptogenicBullion network through a SOCKS proxy (e.g. when connecting through Tor).</source>
-        <translation>Connect to the CryptogenicBullion network through a SOCKS proxy (e.g. when connecting through Tor).</translation>
+        <source>Connect to the Teslacoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
+        <translation>Connect to the Teslacoin network through a SOCKS proxy (e.g. when connecting through Tor).</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -914,8 +914,8 @@ Address: %4
     </message>
     <message>
         <location line="+13"/>
-        <source>The user interface language can be set here. This setting will take effect after restarting CryptogenicBullion.</source>
-        <translation>The user interface language can be set here. This setting will take effect after restarting CryptogenicBullion.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting Teslacoin.</source>
+        <translation>The user interface language can be set here. This setting will take effect after restarting Teslacoin.</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -929,8 +929,8 @@ Address: %4
     </message>
     <message>
         <location line="+9"/>
-        <source>Whether to show CryptogenicBullion addresses in the transaction list or not.</source>
-        <translation>Whether to show CryptogenicBullion addresses in the transaction list or not.</translation>
+        <source>Whether to show Teslacoin addresses in the transaction list or not.</source>
+        <translation>Whether to show Teslacoin addresses in the transaction list or not.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -966,8 +966,8 @@ Address: %4
     <message>
         <location line="-9"/>
         <location line="+9"/>
-        <source>This setting will take effect after restarting CryptogenicBullion.</source>
-        <translation>This setting will take effect after restarting CryptogenicBullion.</translation>
+        <source>This setting will take effect after restarting Teslacoin.</source>
+        <translation>This setting will take effect after restarting Teslacoin.</translation>
     </message>
     <message>
         <location line="+29"/>
@@ -985,8 +985,8 @@ Address: %4
     <message>
         <location line="+33"/>
         <location line="+183"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the CryptogenicBullion network after a connection is established, but this process has not completed yet.</source>
-        <translation>The displayed information may be out of date. Your wallet automatically synchronizes with the CryptogenicBullion network after a connection is established, but this process has not completed yet.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Teslacoin network after a connection is established, but this process has not completed yet.</source>
+        <translation>The displayed information may be out of date. Your wallet automatically synchronizes with the Teslacoin network after a connection is established, but this process has not completed yet.</translation>
     </message>
     <message>
         <location line="-141"/>
@@ -1201,8 +1201,8 @@ Address: %4
     </message>
     <message>
         <location line="+7"/>
-        <source>Show the CryptogenicBullion-Qt help message to get a list with possible CryptogenicBullion command-line options.</source>
-        <translation>Show the CryptogenicBullion-Qt help message to get a list with possible CryptogenicBullion command-line options.</translation>
+        <source>Show the Teslacoin-Qt help message to get a list with possible Teslacoin command-line options.</source>
+        <translation>Show the Teslacoin-Qt help message to get a list with possible Teslacoin command-line options.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1221,13 +1221,13 @@ Address: %4
     </message>
     <message>
         <location line="-104"/>
-        <source>CryptogenicBullion - Debug window</source>
-        <translation>CryptogenicBullion - Debug window</translation>
+        <source>Teslacoin - Debug window</source>
+        <translation>Teslacoin - Debug window</translation>
     </message>
     <message>
         <location line="+25"/>
-        <source>CryptogenicBullion Core</source>
-        <translation>CryptogenicBullion Core</translation>
+        <source>Teslacoin Core</source>
+        <translation>Teslacoin Core</translation>
     </message>
     <message>
         <location line="+279"/>
@@ -1236,8 +1236,8 @@ Address: %4
     </message>
     <message>
         <location line="+7"/>
-        <source>Open the CryptogenicBullion debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Open the CryptogenicBullion debug log file from the current data directory. This can take a few seconds for large log files.</translation>
+        <source>Open the Teslacoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Open the Teslacoin debug log file from the current data directory. This can take a few seconds for large log files.</translation>
     </message>
     <message>
         <location line="+102"/>
@@ -1246,8 +1246,8 @@ Address: %4
     </message>
     <message>
         <location filename="../rpcconsole.cpp" line="-33"/>
-        <source>Welcome to the CryptogenicBullion RPC console.</source>
-        <translation>Welcome to the CryptogenicBullion RPC console.</translation>
+        <source>Welcome to the Teslacoin RPC console.</source>
+        <translation>Welcome to the Teslacoin RPC console.</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1430,8 +1430,8 @@ Address: %4
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="+1"/>
-        <source>Enter a valid CryptogenicBullion address</source>
-        <translation>Enter a valid CryptogenicBullion address </translation>
+        <source>Enter a valid Teslacoin address</source>
+        <translation>Enter a valid Teslacoin address </translation>
     </message>
 </context>
 <context>
@@ -1491,8 +1491,8 @@ Address: %4
     </message>
     <message>
         <location line="+21"/>
-        <source>Sign the message to prove you own this CryptogenicBullion address</source>
-        <translation>Sign the message to prove you own this CryptogenicBullion address</translation>
+        <source>Sign the message to prove you own this Teslacoin address</source>
+        <translation>Sign the message to prove you own this Teslacoin address</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -1523,8 +1523,8 @@ Address: %4
     </message>
     <message>
         <location line="+40"/>
-        <source>Verify the message to ensure it was signed with the specified CryptogenicBullion address</source>
-        <translation>Verify the message to ensure it was signed with the specified CryptogenicBullion address</translation>
+        <source>Verify the message to ensure it was signed with the specified Teslacoin address</source>
+        <translation>Verify the message to ensure it was signed with the specified Teslacoin address</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -1534,8 +1534,8 @@ Address: %4
     <message>
         <location filename="../signverifymessagedialog.cpp" line="+27"/>
         <location line="+3"/>
-        <source>Enter a valid CryptogenicBullion address</source>
-        <translation>Enter a valid CryptogenicBullion address</translation>
+        <source>Enter a valid Teslacoin address</source>
+        <translation>Enter a valid Teslacoin address</translation>
     </message>
     <message>
         <location line="-2"/>
@@ -1544,8 +1544,8 @@ Address: %4
     </message>
     <message>
         <location line="+3"/>
-        <source>Enter CryptogenicBullion signature</source>
-        <translation>Enter CryptogenicBullion signature</translation>
+        <source>Enter Teslacoin signature</source>
+        <translation>Enter Teslacoin signature</translation>
     </message>
     <message>
         <location line="+82"/>
@@ -2115,8 +2115,8 @@ Address: %4
     <name>bitcoin-core</name>
     <message>
         <location filename="../bitcoinstrings.cpp" line="+82"/>
-        <source>CryptogenicBullion version</source>
-        <translation>CryptogenicBullion version</translation>
+        <source>Teslacoin version</source>
+        <translation>Teslacoin version</translation>
     </message>
     <message>
         <location line="+82"/>
@@ -2145,13 +2145,13 @@ Address: %4
     </message>
     <message>
         <location line="+23"/>
-        <source>Specify configuration file (default: CryptogenicBullion.conf)</source>
-        <translation>Specify configuration file (default: CryptogenicBullion.conf)</translation>
+        <source>Specify configuration file (default: Teslacoin.conf)</source>
+        <translation>Specify configuration file (default: Teslacoin.conf)</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Specify pid file (default: CryptogenicBulliond.pid)</source>
-        <translation>Specify pid file (default: CryptogenicBulliond.pid)</translation>
+        <source>Specify pid file (default: Teslacoind.pid)</source>
+        <translation>Specify pid file (default: Teslacoind.pid)</translation>
     </message>
     <message>
         <location line="-47"/>
@@ -2305,8 +2305,8 @@ Address: %4
     </message>
     <message>
         <location line="+3"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong CryptogenicBullion will not work properly.</source>
-        <translation>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong CryptogenicBullion will not work properly.</translation>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong Teslacoin will not work properly.</source>
+        <translation>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong Teslacoin will not work properly.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -2540,13 +2540,13 @@ Address: %4
     </message>
     <message>
         <location line="-131"/>
-        <source>Cannot obtain a lock on data directory %s.  CryptogenicBullion is probably already running.</source>
-        <translation>Cannot obtain a lock on data directory %s.  CryptogenicBullion is probably already running.</translation>
+        <source>Cannot obtain a lock on data directory %s.  Teslacoin is probably already running.</source>
+        <translation>Cannot obtain a lock on data directory %s.  Teslacoin is probably already running.</translation>
     </message>
     <message>
         <location line="+57"/>
-        <source>CryptogenicBullion</source>
-        <translation>CryptogenicBullion</translation>
+        <source>Teslacoin</source>
+        <translation>Teslacoin</translation>
     </message>
     <message>
         <location line="+77"/>
@@ -2580,13 +2580,13 @@ Address: %4
     </message>
     <message>
         <location line="+1"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of CryptogenicBullion</source>
-        <translation>Error loading wallet.dat: Wallet requires newer version of CryptogenicBullion</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of Teslacoin</source>
+        <translation>Error loading wallet.dat: Wallet requires newer version of Teslacoin</translation>
     </message>
     <message>
         <location line="+73"/>
-        <source>Wallet needed to be rewritten: restart CryptogenicBullion to complete</source>
-        <translation>Wallet needed to be rewritten: restart CryptogenicBullion to complete</translation>
+        <source>Wallet needed to be rewritten: restart Teslacoin to complete</source>
+        <translation>Wallet needed to be rewritten: restart Teslacoin to complete</translation>
     </message>
     <message>
         <location line="-75"/>
@@ -2655,8 +2655,8 @@ Address: %4
     </message>
     <message>
         <location line="-25"/>
-        <source>Unable to bind to %s on this computer. CryptogenicBullion is probably already running.</source>
-        <translation>Unable to bind to %s on this computer. CryptogenicBullion is probably already running.</translation>
+        <source>Unable to bind to %s on this computer. Teslacoin is probably already running.</source>
+        <translation>Unable to bind to %s on this computer. Teslacoin is probably already running.</translation>
     </message>
     <message>
         <location line="+55"/>
