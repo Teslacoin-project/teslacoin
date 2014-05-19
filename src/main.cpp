@@ -1021,14 +1021,12 @@ int64 GetProofOfStakeReward(int64 nCoinAge, unsigned int nBits, unsigned int nTi
 		else
 		nRewardCoinYear = min((nRewardCoinYear / CENT) * CENT, MAX_MINT_PROOF_OF_STAKE);
     }
-    else if(fTestNet || nTime > STAKE_SWITCH_TIME)
+    
+	if(fTestNet || nTime > STAKE_SWITCH_TIME)
     {
         // New creation amount per coin-year, 12% fixed stake mint rate
         nRewardCoinYear = 12 * CENT;
-    }else{
-		// Old creation amount per coin-year, 5% fixed stake mint rate
-        nRewardCoinYear = 0.015 * CENT;
-	}
+    }
 
     int64 nSubsidy = nCoinAge * 33 / (365 * 33 + 8) * nRewardCoinYear;
 
