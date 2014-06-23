@@ -938,7 +938,7 @@ uint256 WantedByOrphan(const CBlock* pblockOrphan)
 
 // miner's coin base reward based on nBits
 
-// POW end block 462500 via LAST_POW_BLOCK, total coins approx 60m
+
 
 int64 GetProofOfWorkReward(unsigned int nHeight)
 {
@@ -956,6 +956,10 @@ int64 GetProofOfWorkReward(unsigned int nHeight)
 		    nSubsidy = 93 * COIN;
 		else if (nHeight < 425001)
 		    nSubsidy = 76 * COIN;
+        
+        // POW end block 462500 via LAST_POW_BLOCK, total coins approx 60m
+        // Leaving this POW reward structure because it was the original.
+        
 		else if (nHeight < 510001)
 		    nSubsidy = 62 * COIN;
 		else if (nHeight < 595001)
