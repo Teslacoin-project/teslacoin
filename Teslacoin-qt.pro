@@ -4,21 +4,14 @@ VERSION = 0.7.2
 INCLUDEPATH += src src/json src/qt
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE BOOST_THREAD_PROVIDES_GENERIC_SHARED_MUTEX_ON_WIN __NO_SYSTEM_INCLUDES
 CONFIG += no_include_pwd
+CONFIG += thread
+QT += network
+QMAKE_CXXFLAGS = -fpermissive
 
-# UNCOMMENT THIS SECTION TO BUILD ON WINDOWS
-
-windows:LIBS += -lshlwapi
-LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB_PATH,,-L,) $$join(QRENCODE_LIB_PATH,,-L,)
-LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
-windows:LIBS += -lws2_32 -lole32 -loleaut32 -luuid -lgdi32
-LIBS += -lboost_system-mgw46-mt-sd-1_53 -lboost_filesystem-mgw46-mt-sd-1_53 -lboost_program_options-mgw46-mt-sd-1_53 -lboost_thread-mgw46-mt-sd-1_53
-BOOST_LIB_SUFFIX=-mgw46-mt-sd-1_53
-BOOST_INCLUDE_PATH=C:/deps/boost
-BOOST_LIB_PATH=C:/deps/boost/stage/lib
-BDB_INCLUDE_PATH=c:/deps/db/build_unix
-BDB_LIB_PATH=c:/deps/db/build_unix
-OPENSSL_INCLUDE_PATH=c:/deps/ssl/include
-OPENSSL_LIB_PATH=c:/deps/ssl
+greaterThan(QT_MAJOR_VERSION, 4) {
+    QT += widgets
+    DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0
+}
 
 OBJECTS_DIR = build
 MOC_DIR = build
@@ -176,9 +169,12 @@ HEADERS += src/qt/bitcoingui.h \
     src/allocators.h \
     src/ui_interface.h \
     src/qt/rpcconsole.h \
+	src/qt/blockbrowser.h \
     src/version.h \
     src/netbase.h \
-    src/clientversion.h
+    src/clientversion.h \
+	src/qt/chatwindow.h \
+	src/qt/serveur.h
 
 SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/transactiontablemodel.cpp \
@@ -192,6 +188,7 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/aboutdialog.cpp \
     src/qt/editaddressdialog.cpp \
     src/qt/bitcoinaddressvalidator.cpp \
+	src/qt/chatwindow.cpp \
     src/alert.cpp \
     src/version.cpp \
     src/sync.cpp \
@@ -228,7 +225,8 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/rpcwallet.cpp \
     src/rpcblockchain.cpp \
     src/rpcrawtransaction.cpp \
-    src/qt/overviewpage.cpp \
+	src/qt/overviewpage.cpp \
+	src/qt/blockbrowser.cpp \
     src/qt/csvmodelwriter.cpp \
     src/crypter.cpp \
     src/qt/sendcoinsentry.cpp \
@@ -240,6 +238,7 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/notificator.cpp \
     src/qt/qtipcserver.cpp \
     src/qt/rpcconsole.cpp \
+	src/qt/serveur.cpp \
     src/noui.cpp \
     src/kernel.cpp \
     src/scrypt-x86.S \
@@ -262,7 +261,9 @@ FORMS += \
     src/qt/forms/sendcoinsentry.ui \
     src/qt/forms/askpassphrasedialog.ui \
     src/qt/forms/rpcconsole.ui \
-    src/qt/forms/optionsdialog.ui
+	src/qt/forms/blockbrowser.ui \
+    src/qt/forms/optionsdialog.ui \
+	src/qt/forms/chatwindow.ui
 
 contains(USE_QRCODE, 1) {
 HEADERS += src/qt/qrcodedialog.h

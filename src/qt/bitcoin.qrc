@@ -34,19 +34,33 @@
         <file alias="tx_input">res/icons/tx_input.png</file>
         <file alias="tx_output">res/icons/tx_output.png</file>
         <file alias="tx_inout">res/icons/tx_inout.png</file>
+		<file alias="mint_closed">res/icons/mint_closed.png</file>
+        <file alias="mint_open">res/icons/mint_open.png</file>
         <file alias="lock_closed">res/icons/lock_closed.png</file>
         <file alias="lock_open">res/icons/lock_open.png</file>
         <file alias="key">res/icons/key.png</file>
         <file alias="filesave">res/icons/filesave.png</file>
         <file alias="qrcode">res/icons/qrcode.png</file>
         <file alias="debugwindow">res/icons/debugwindow.png</file>
+        <file alias="block">res/icons/block.png</file>
+        <file alias="ex">res/icons/ex.png</file>
+        <file alias="mine">res/icons/mine.png</file>
+        <file alias="statistics">res/icons/statistics.png</file>
+        <file alias="staking_off">res/icons/staking_off.png</file>
+        <file alias="staking_on">res/icons/staking_on.png</file>
+		<file alias="reddit">res/icons/reddit.png</file>
+        <file alias="twitter">res/icons/TW.png</file>
+        <file alias="face">res/icons/face.png</file>
+        <file alias="social">res/icons/social.png</file>
     </qresource>
     <qresource prefix="/images">
         <file alias="about">res/images/about.png</file>
-        <file alias="splash">res/images/splash2.jpg</file>
+        <file alias="splash">res/images/splash.png</file>
+		<file alias="bkg">res/images/bkg.png</file>
     </qresource>
     <qresource prefix="/movies">
-        <file alias="update_spinner">res/movies/update_spinner.mng</file>
+        <file alias="spinner">res/movies/spinner.gif</file>
+        <file alias="blixt">res/movies/blixt.gif</file>
     </qresource>
     <qresource prefix="/translations">
         <file alias="en">locale/bitcoin_en.qm</file>

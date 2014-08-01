@@ -41,10 +41,8 @@ static CBigNum bnProofOfStakeHardLimit(~uint256(0) >> 30); // disabled temporari
 static CBigNum bnProofOfWorkLimitTestNet(~uint256(0) >> 16);
 static CBigNum bnProofOfStakeLimitTestNet(~uint256(0) >> 20);
 
-unsigned int nStakeMinAge = 60 * 60 * 24; // 24hours. non updated clients will fork.
+unsigned int nStakeMinAge = 60 * 60 * 8; // minimum age for coin age, changed to 8 hours (24 hr realistic min) network will auto balance
 unsigned int nStakeMaxAge = 60 * 60 * 24 * 90; // stake age of full weight
-
-int nRewardCoinYear = 12 * CENT;
 unsigned int nStakeTargetSpacing = 1 * 30; // 1-minute block spacing    --- actually is 30 second
 int64 nChainStartTime = 1389962767;
 int nCoinbaseMaturity = 5;
@@ -940,7 +938,7 @@ uint256 WantedByOrphan(const CBlock* pblockOrphan)
 
 // miner's coin base reward based on nBits
 
-
+// POW end block 462500 via LAST_POW_BLOCK, total coins approx 60m
 
 int64 GetProofOfWorkReward(unsigned int nHeight)
 {
@@ -958,10 +956,6 @@ int64 GetProofOfWorkReward(unsigned int nHeight)
 		    nSubsidy = 93 * COIN;
 		else if (nHeight < 425001)
 		    nSubsidy = 76 * COIN;
-
-        // POW end block 465000 via LAST_POW_BLOCK, total coins approx 60m
-        // Leaving this POW reward structure because it was the original.
-
 		else if (nHeight < 510001)
 		    nSubsidy = 62 * COIN;
 		else if (nHeight < 595001)
@@ -1388,7 +1382,7 @@ bool CTransaction::ConnectInputs(CTxDB& txdb, MapPrevTx inputs,
                 return DoS(100, error("ConnectInputs() : txin values out of range"));
 
         }
-        // The first loop above does all the inexpensive checks.
+        // The first while (true) above does all the inexpensive checks.
         // Only if ALL inputs pass do we perform expensive ECDSA signature checks.
         // Helps prevent CPU exhaustion attacks.
         for (unsigned int i = 0; i < vin.size(); i++)
@@ -2521,7 +2515,7 @@ static unsigned int nCurrentBlockFile = 1;
 FILE* AppendBlockFile(unsigned int& nFileRet)
 {
     nFileRet = 0;
-    loop
+    while (true)
     {
         FILE* file = OpenBlockFile(nCurrentBlockFile, 0, "ab");
         if (!file)
@@ -3605,7 +3599,7 @@ bool ProcessMessages(CNode* pfrom)
     //  (x) data
     //
 
-    loop
+    while (true)
     {
         // Don't bother if send buffer is too full to respond anyway
         if (pfrom->vSend.size() >= SendBufferSize())
@@ -4458,7 +4452,7 @@ void BitcoinMiner(CWallet *pwallet, bool fProofOfStake)
         block_header res_header;
         uint256 result;
 
-        loop
+        while (true)
         {
             unsigned int nHashesDone = 0;
             unsigned int nNonceFound;

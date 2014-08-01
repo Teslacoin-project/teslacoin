@@ -9,11 +9,15 @@ class ClientModel;
 class WalletModel;
 class TransactionView;
 class OverviewPage;
+class StatisticsPage;
+class BlockBrowser;
+//class PoolBrowser;
 class AddressBookPage;
 class SendCoinsDialog;
 class SignVerifyMessageDialog;
 class Notificator;
 class RPCConsole;
+class ChatWindow;
 
 QT_BEGIN_NAMESPACE
 class QLabel;
@@ -60,6 +64,10 @@ private:
     QStackedWidget *centralWidget;
 
     OverviewPage *overviewPage;
+    StatisticsPage *statisticsPage;
+    BlockBrowser *blockBrowser;
+ //   PoolBrowser *poolBrowser;
+	ChatWindow *chatWindow;
     QWidget *transactionsPage;
     AddressBookPage *addressBookPage;
     AddressBookPage *receiveCoinsPage;
@@ -67,6 +75,7 @@ private:
     SignVerifyMessageDialog *signVerifyMessageDialog;
 
     QLabel *labelEncryptionIcon;
+    QLabel *labelStakingIcon;
     QLabel *labelConnectionsIcon;
     QLabel *labelBlocksIcon;
     QLabel *progressBarLabel;
@@ -74,12 +83,18 @@ private:
 
     QMenuBar *appMenuBar;
     QAction *overviewAction;
+    QAction *statisticsAction;
+    QAction *blockAction;
+//    QAction *poolAction;
+	QAction *chatAction;
     QAction *historyAction;
     QAction *quitAction;
     QAction *sendCoinsAction;
     QAction *addressBookAction;
     QAction *signMessageAction;
     QAction *verifyMessageAction;
+    QAction *aboutCardAction;
+//	QAction *tutoStackAction;
     QAction *aboutAction;
     QAction *receiveCoinsAction;
     QAction *optionsAction;
@@ -88,6 +103,8 @@ private:
     QAction *encryptWalletAction;
     QAction *backupWalletAction;
     QAction *changePassphraseAction;
+    QAction *unlockWalletAction;
+    QAction *lockWalletAction;
     QAction *aboutQtAction;
     QAction *openRPCConsoleAction;
 
@@ -134,6 +151,12 @@ public slots:
 private slots:
     /** Switch to overview (home) page */
     void gotoOverviewPage();
+    /** Switch to statistics page*/
+//    void gotoStatisticsPage();
+    /** Switch to block explorer*/
+    void gotoBlockBrowser();
+	    /** Switch to block explorer*/
+//    void gotoPoolBrowser();
     /** Switch to history (transactions) page */
     void gotoHistoryPage();
     /** Switch to address book page */
@@ -142,6 +165,7 @@ private slots:
     void gotoReceiveCoinsPage();
     /** Switch to send coins page */
     void gotoSendCoinsPage();
+	void gotoChatPage();
 
     /** Show Sign/Verify Message dialog and switch to sign message tab */
     void gotoSignMessageTab(QString addr = "");
@@ -150,6 +174,8 @@ private slots:
 
     /** Show configuration dialog */
     void optionsClicked();
+    void aboutCardClicked();
+//	void tutoStackClicked();
     /** Show about dialog */
     void aboutClicked();
 #ifndef Q_OS_MAC
@@ -170,10 +196,14 @@ private slots:
     /** Ask for passphrase to unlock wallet temporarily */
     void unlockWallet();
 
+//    void lockWallet();
+
     /** Show window if hidden, unminimize when minimized, rise when obscured or show if hidden and fToggleHidden is true */
     void showNormalIfMinimized(bool fToggleHidden = false);
     /** simply calls showNormalIfMinimized(true) for use in SLOT() macro */
     void toggleHidden();
+
+//    void updateStakingIcon();
 };
 
 #endif
