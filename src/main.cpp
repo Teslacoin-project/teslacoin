@@ -5,7 +5,8 @@
 
 #include "alert.h"
 #include "checkpoints.h"
-#include "db.h"
+//#include "db.h"
+#include "txdb.h"
 #include "net.h"
 #include "init.h"
 #include "ui_interface.h"
@@ -41,7 +42,7 @@ static CBigNum bnProofOfStakeHardLimit(~uint256(0) >> 30); // disabled temporari
 static CBigNum bnProofOfWorkLimitTestNet(~uint256(0) >> 16);
 static CBigNum bnProofOfStakeLimitTestNet(~uint256(0) >> 20);
 
-unsigned int nStakeMinAge = 60 * 60 * 8; // minimum age for coin age, changed to 8 hours (24 hr realistic min) network will auto balance
+unsigned int nStakeMinAge = 60 * 60 * 24; // minimum age for coin age, changed to 8 hours (24 hr realistic min) network will auto balance
 unsigned int nStakeMaxAge = 60 * 60 * 24 * 90; // stake age of full weight
 unsigned int nStakeTargetSpacing = 1 * 30; // 1-minute block spacing    --- actually is 30 second
 int64 nChainStartTime = 1389962767;
@@ -2025,7 +2026,7 @@ bool CBlock::AddToBlockIndex(unsigned int nFile, unsigned int nBlockPos)
         if (!SetBestChain(txdb, pindexNew))
             return false;
 
-    txdb.Close();
+    //txdb.Close();
 
     if (pindexNew == pindexBest)
     {
@@ -2556,7 +2557,7 @@ bool LoadBlockIndex(bool fAllowNew)
     CTxDB txdb("cr");
     if (!txdb.LoadBlockIndex())
         return false;
-    txdb.Close();
+    //txdb.Close();
 
     //
     // Init with genesis block
@@ -2644,7 +2645,7 @@ bool LoadBlockIndex(bool fAllowNew)
             if ((!fTestNet) && !Checkpoints::ResetSyncCheckpoint())
                 return error("LoadBlockIndex() : failed to reset sync-checkpoint");
         }
-        txdb.Close();
+        //txdb.Close();
     }
 
     return true;
