@@ -287,8 +287,7 @@ HEADERS += src/qt/bitcoingui.h \
     src/qt/blockbrowser.h \
     src/version.h \
     src/netbase.h \
-    src/clientversion.h \
-    src/qt/serveur.h
+    src/clientversion.h
 
 SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/transactiontablemodel.cpp \
@@ -352,7 +351,6 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/notificator.cpp \
     src/qt/qtipcserver.cpp \
     src/qt/rpcconsole.cpp \
-    src/qt/serveur.cpp \
     src/noui.cpp \
     src/kernel.cpp \
     src/scrypt-x86.S \
