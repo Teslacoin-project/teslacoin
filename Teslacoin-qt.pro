@@ -1,23 +1,5 @@
-# figure out windows
-win32 {
-    contains(QMAKE_HOST.arch, x86_64) {
-        message("x86_64 64-bit build")
-        WINBITS = 64
-    } else {
-        message("x86 32-bit build")
-        WINBITS = 32
-    }
-}
-win32 {
-   contains(WINBITS, 32) {
-     MSYS = MinGW/msys/1.0
-   } else {
-     MSYS = mingw64/msys
-   }
-}
-
 TEMPLATE = app
-TARGET = "TeslaCoin Qt"
+TARGET = "TeslaCoin-Qt"
 VERSION = 3.0.0.1
 INCLUDEPATH += src src/json src/qt src/tor
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE
@@ -25,7 +7,7 @@ CONFIG += no_include_pwd
 CONFIG += thread
 
 greaterThan(QT_MAJOR_VERSION, 4) {
-    QT += network widgets
+    QT += widgets
     DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0
 }
 
@@ -242,7 +224,6 @@ HEADERS += src/qt/bitcoingui.h \
     src/version.h \
     src/netbase.h \
     src/clientversion.h \
-    src/qt/chatwindow.h \
     src/qt/serveur.h
 
 SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
@@ -250,14 +231,13 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/addresstablemodel.cpp \
     src/qt/optionsdialog.cpp \
     src/qt/sendcoinsdialog.cpp \
-	src/qt/coincontroldialog.cpp \
+        src/qt/coincontroldialog.cpp \
     src/qt/coincontroltreewidget.cpp \
     src/qt/addressbookpage.cpp \
     src/qt/signverifymessagedialog.cpp \
     src/qt/aboutdialog.cpp \
     src/qt/editaddressdialog.cpp \
     src/qt/bitcoinaddressvalidator.cpp \
-    src/qt/chatwindow.cpp \
     src/alert.cpp \
     src/version.cpp \
     src/sync.cpp \
