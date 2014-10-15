@@ -65,8 +65,6 @@
 #include <iostream>
 
 extern CWallet* pwalletMain;
-extern int64_t nLastCoinStakeSearchInterval;
-extern unsigned int nTargetSpacing;
 double GetPoSKernelPS();
 
 BitcoinGUI::BitcoinGUI(QWidget *parent):
@@ -1005,6 +1003,14 @@ void BitcoinGUI::unlockWallet()
         dlg.setModel(walletModel);
         dlg.exec();
     }
+}
+
+void BitcoinGUI::lockWallet()
+{
+    if(!walletModel)
+        return;
+
+    walletModel->setWalletLocked(true);
 }
 
 void BitcoinGUI::showNormalIfMinimized(bool fToggleHidden)
