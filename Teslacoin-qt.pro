@@ -23,6 +23,11 @@ INCLUDEPATH += src src/json src/qt src/tor
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE
 CONFIG += no_include_pwd
 CONFIG += thread
+windows:CONFIG += static
+
+
+
+#CONFIG += debug
 
 greaterThan(QT_MAJOR_VERSION, 4) {
     QT += network widgets
@@ -43,14 +48,73 @@ OBJECTS_DIR = build
 MOC_DIR = build
 UI_DIR = build
 
+build_macosx64 {
+    BOOST_LIB_SUFFIX=-mt
+    BOOST_INCLUDE_PATH=/usr/local/include/boost
+    BOOST_LIB_PATH=/usr/local/lib
+
+    BDB_INCLUDE_PATH=/usr/local/opt/berkeley-db4/include
+
+    OPENSSL_INCLUDE_PATH=/usr/local/opt/openssl/include
+    OPENSSL_LIB_PATH=/usr/local/opt/openssl/lib
+
+    MINIUPNPC_INCLUDE_PATH=/usr/local/opt/miniupnpc/include
+
+    QRENCODE_INCLUDE_PATH=/usr/local/opt/qrencode/include
+}
+
+# Use like: qmake "CONFIG+=build_win32";
+build_win32 {
+    
+    BOOST_LIB_SUFFIX=-mgw48-mt-s-1_55
+    BOOST_INCLUDE_PATH=c:/deps/boost/include
+    BOOST_LIB_PATH=c:/deps/boost/lib
+    
+    BDB_INCLUDE_PATH=c:/deps/db-4.8.30.NC/build_unix
+    BDB_LIB_PATH=c:/deps/db-4.8.30.NC/build_unix
+    OPENSSL_INCLUDE_PATH=c:/deps/openssl_1.0.1h/include
+    OPENSSL_LIB_PATH=c:/deps/openssl_1.0.1h/lib/
+
+    MINIUPNPC_INCLUDE_PATH=c:/deps/miniupnpc
+    MINIUPNPC_LIB_PATH=c:/deps/miniupnpc
+    #MINIUPNPC_LIB_PATH=/c/deps/miniupnpc
+
+    QRENCODE_INCLUDE_PATH=c:/deps/qrencode-3.4.3
+    QRENCODE_LIB_PATH=c:/deps/qrencode-3.4.3/.libs/
+    
+	#USE_BUILD_INFO = 1
+	DEFINES += HAVE_BUILD_INFO
+	
+	USE_QRCODE=1
+    
+    #USE_UPNP=-
+}
+build_win64 {
+    BOOST_LIB_SUFFIX=-mgw48-mt-s-1_55
+    BOOST_INCLUDE_PATH=c:/deps_64/boost/include
+    BOOST_LIB_PATH=c:/deps_64/boost/lib
+    
+    BDB_INCLUDE_PATH=c:/deps_64/db-4.8.30.NC/build_unix
+    BDB_LIB_PATH=c:/deps_64/db-4.8.30.NC/build_unix
+    OPENSSL_INCLUDE_PATH=c:/deps_64/openssl_1.0.1h/include
+    OPENSSL_LIB_PATH=c:/deps_64/openssl_1.0.1h/lib/
+
+    MINIUPNPC_INCLUDE_PATH=c:/deps_64/miniupnpc
+    MINIUPNPC_LIB_PATH=c:/deps_64/miniupnpc
+
+    QRENCODE_INCLUDE_PATH=c:/deps_64/qrencode-3.4.3
+    QRENCODE_LIB_PATH=c:/deps_64/qrencode-3.4.3/.libs/
+    
+    DEFINES += IS_ARCH_64
+}
 # use: qmake "RELEASE=1"
 contains(RELEASE, 1) {
     # Mac: ensure compatibility with at least 10.7, 64 bit
     macx:XXFLAGS += -mmacosx-version-min=10.7 -arch x86_64 \
                     -isysroot /Developer/SDKs/MacOSX10.7.sdk
     !win32:!macx {
-        # Linux: static link
-        # LIBS += -Bstatic
+        #Linux: static link
+        LIBS += -Bstatic
     }
 }
 
@@ -62,7 +126,7 @@ QMAKE_LFLAGS *= -fstack-protector-all --param ssp-buffer-size=1
 # This can be enabled for Windows, when we switch to MinGW >= 4.4.x.
 }
 # for extra security on Windows: enable ASLR and DEP via GCC linker flags
-win32:QMAKE_LFLAGS *= -Wl,--dynamicbase -Wl,--nxcompat
+win32:QMAKE_LFLAGS *= -Wl,--dynamicbase -Wl,--nxcompat -static
 win32:QMAKE_LFLAGS += -static-libgcc -static-libstdc++
 
 # use: qmake "USE_QRCODE=1"
@@ -123,7 +187,7 @@ LIBS += $$PWD/src/leveldb/libleveldb.a $$PWD/src/leveldb/libmemenv.a
         QMAKE_RANLIB = $$replace(QMAKE_STRIP, strip, ranlib)
     }
     LIBS += -lshlwapi
-    genleveldb.commands = cd $$PWD/src/leveldb && CC=$$QMAKE_CC CXX=$$QMAKE_CXX TARGET_OS=OS_WINDOWS_CROSSCOMPILE $(MAKE) OPT=\"$$QMAKE_CXXFLAGS $$QMAKE_CXXFLAGS_RELEASE\" libleveldb.a libmemenv.a && $$QMAKE_RANLIB $$PWD/src/leveldb/libleveldb.a && $$QMAKE_RANLIB $$PWD/src/leveldb/libmemenv.a
+    genleveldb.commands = cd $$PWD/src/leveldb && CC=$$QMAKE_CC CXX=$$QMAKE_CXX TARGET_OS=NATIVE_WINDOWS $(MAKE) OPT=\"$$QMAKE_CXXFLAGS $$BOOST_INCLUDE_PATH $$QMAKE_CXXFLAGS_RELEASE\" libleveldb.a libmemenv.a && $$QMAKE_RANLIB $$PWD/src/leveldb/libleveldb.a && $$QMAKE_RANLIB $$PWD/src/leveldb/libmemenv.a
 }
 genleveldb.target = $$PWD/src/leveldb/libleveldb.a
 genleveldb.depends = FORCE
@@ -382,8 +446,7 @@ isEmpty(BOOST_LIB_SUFFIX) {
 }
 
 isEmpty(BOOST_THREAD_LIB_SUFFIX) {
-    win32:BOOST_THREAD_LIB_SUFFIX = _win32$$BOOST_LIB_SUFFIX
-    else:BOOST_THREAD_LIB_SUFFIX = $$BOOST_LIB_SUFFIX
+    BOOST_THREAD_LIB_SUFFIX = $$BOOST_LIB_SUFFIX
 }
 
 isEmpty(BDB_LIB_PATH) {
