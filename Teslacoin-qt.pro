@@ -462,13 +462,15 @@ windows:!contains(MINGW_THREAD_BUGFIX, 0) {
 }
 
 macx {
-   HEADERS += src/qt/macdockiconhandler.h
-   OBJECTIVE_SOURCES += src/qt/macdockiconhandler.mm
+   HEADERS += src/qt/macdockiconhandler.h \
+              src/qt/macnotificationhandler.h
+   OBJECTIVE_SOURCES += src/qt/macdockiconhandler.mm \
+                        src/qt/macnotificationhandler.mm
    LIBS += -framework Foundation -framework ApplicationServices \
            -framework AppKit
    DEFINES += MAC_OSX MSG_NOSIGNAL=0
    ICON = src/qt/res/icons/bitcoin.icns
-   TARGET = "TeslaCoin Qt"
+   TARGET = "TeslaCoin-Qt"
    QMAKE_CFLAGS_THREAD += -pthread
    QMAKE_LFLAGS_THREAD += -pthread
    QMAKE_CXXFLAGS_THREAD += -pthread
