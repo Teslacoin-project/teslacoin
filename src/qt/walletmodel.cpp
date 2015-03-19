@@ -307,6 +307,16 @@ bool WalletModel::changePassphrase(const SecureString &oldPass, const SecureStri
     return retval;
 }
 
+void WalletModel::getStakeStats(float &nKernelsRate, float &nCoinDaysRate)
+{
+    wallet->GetStakeStats(nKernelsRate, nCoinDaysRate);
+}
+
+void WalletModel::getStakeWeightFromValue(const int64_t& nTime, const int64_t& nValue, uint64_t& nWeight)
+{
+    wallet->GetStakeWeightFromValue(nTime, nValue, nWeight);
+}
+
 bool WalletModel::backupWallet(const QString &filename)
 {
     return BackupWallet(*wallet, filename.toLocal8Bit().data());
@@ -357,6 +367,13 @@ void WalletModel::unsubscribeFromCoreSignals()
 WalletModel::UnlockContext WalletModel::requestUnlock()
 {
     bool was_locked = getEncryptionStatus() == Locked;
+    bool mintflag = fWalletUnlockStakingOnly;
+
+    if ((!was_locked) && fWalletUnlockStakingOnly)
+    {
+        setWalletLocked(true);
+        was_locked = getEncryptionStatus() == Locked;
+    }
     if(was_locked)
     {
         // Request UI to unlock wallet
@@ -365,13 +382,14 @@ WalletModel::UnlockContext WalletModel::requestUnlock()
     // If wallet is still locked, unlock was failed or cancelled, mark context as invalid
     bool valid = getEncryptionStatus() != Locked;
 
-    return UnlockContext(this, valid, was_locked);
+    return UnlockContext(this, valid, was_locked, mintflag);
 }
 
-WalletModel::UnlockContext::UnlockContext(WalletModel *wallet, bool valid, bool relock):
+WalletModel::UnlockContext::UnlockContext(WalletModel *wallet, bool valid, bool relock, bool mintflag):
         wallet(wallet),
         valid(valid),
-        relock(relock)
+        relock(relock),
+        mintflag(mintflag)
 {
 }
 
@@ -379,7 +397,14 @@ WalletModel::UnlockContext::~UnlockContext()
 {
     if(valid && relock)
     {
+        if (mintflag)
+        {
+            // Restore unlock minting flag
+            fWalletUnlockStakingOnly = mintflag;
+            return;
+        }
         wallet->setWalletLocked(true);
+
     }
 }
 
@@ -392,7 +417,7 @@ void WalletModel::UnlockContext::CopyFrom(const UnlockContext& rhs)
 
 bool WalletModel::getPubKey(const CKeyID &address, CPubKey& vchPubKeyOut) const
 {
-    return wallet->GetPubKey(address, vchPubKeyOut);   
+    return wallet->GetPubKey(address, vchPubKeyOut);
 }
 
 // returns a list of COutputs from COutPoints

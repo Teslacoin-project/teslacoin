@@ -18,7 +18,8 @@
 #include "util.h"
 #include "walletdb.h"
 
-extern bool fWalletUnlockMintOnly;
+extern unsigned int nStakeMaxAge;
+extern bool fWalletUnlockStakingOnly;
 class CAccountingEntry;
 class CWalletTx;
 class CReserveKey;
@@ -80,6 +81,10 @@ private:
     // the maximum wallet format version: memory-only variable that specifies to what version this wallet may be upgraded
     int nWalletMaxVersion;
 
+    // stake mining statistics
+    uint64_t nKernelsTried;
+    uint64_t nCoinDaysTried;
+
 public:
     mutable CCriticalSection cs_wallet;
 
@@ -101,6 +106,8 @@ public:
         nMasterKeyMaxID = 0;
         pwalletdbEncryption = NULL;
         nOrderPosNext = 0;
+        nKernelsTried = 0;
+        nCoinDaysTried = 0;
     }
     CWallet(std::string strWalletFileIn)
     {
@@ -111,6 +118,8 @@ public:
         nMasterKeyMaxID = 0;
         pwalletdbEncryption = NULL;
         nOrderPosNext = 0;
+        nKernelsTried = 0;
+        nCoinDaysTried = 0;
     }
 
     std::map<uint256, CWalletTx> mapWallet;
@@ -178,6 +187,8 @@ public:
 	bool CreateTransaction(const std::vector<std::pair<CScript, int64> >& vecSend, CWalletTx& wtxNew, CReserveKey& reservekey, int64& nFeeRet, const CCoinControl *coinControl=NULL);
     bool CreateTransaction(CScript scriptPubKey, int64 nValue, CWalletTx& wtxNew, CReserveKey& reservekey, int64& nFeeRet, const CCoinControl *coinControl=NULL);
     bool CommitTransaction(CWalletTx& wtxNew, CReserveKey& reservekey);
+    void GetStakeStats(float &nKernelsRate, float &nCoinDaysRate);
+    void GetStakeWeightFromValue(const int64_t& nTime, const int64_t& nValue, uint64_t& nWeight);
 	bool CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int64 nSearchInterval, CTransaction& txNew);
     std::string SendMoney(CScript scriptPubKey, int64 nValue, CWalletTx& wtxNew, bool fAskFee=false);
     std::string SendMoneyToDestination(const CTxDestination &address, int64 nValue, CWalletTx& wtxNew, bool fAskFee=false);
