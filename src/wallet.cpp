@@ -13,7 +13,7 @@
 #include "kernel.h"
 
 using namespace std;
-extern int nStakeMaxAge;
+
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -83,9 +83,10 @@ bool CWallet::AddCScript(const CScript& redeemScript)
     return CWalletDB(strWalletFile).WriteCScript(Hash160(redeemScript), redeemScript);
 }
 
-// ppcoin: optional setting to unlock wallet for block minting only;
-//         serves to disable the trivial sendmoney when OS account compromised
-bool fWalletUnlockMintOnly = false;
+// optional setting to unlock wallet for staking only
+// serves to disable the trivial sendmoney when OS account compromised
+// provides no real security
+bool fWalletUnlockStakingOnly = false;
 
 bool CWallet::Unlock(const SecureString& strWalletPassphrase)
 {
@@ -1064,6 +1065,7 @@ static void ApproximateBestSubset(vector<pair<int64, pair<const CWalletTx*,unsig
     }
 }
 
+
 // ppcoin: total coins staked (non-spendable until maturity)
 int64 CWallet::GetStake() const
 {
@@ -1359,7 +1361,54 @@ bool CWallet::CreateTransaction(CScript scriptPubKey, int64 nValue, CWalletTx& w
     return CreateTransaction(vecSend, wtxNew, reservekey, nFeeRet, coinControl);
 }
 
-// ppcoin: create coin stake transaction
+void CWallet::GetStakeWeightFromValue(const int64_t& nTime, const int64_t& nValue, uint64_t& nWeight)
+{
+    int64_t nTimeWeight = GetWeight(nTime, (int64_t)GetTime());
+
+    // If time weight is lower or equal to zero then weight is zero.
+    if (nTimeWeight <= 0)
+    {
+        nWeight = 0;
+        return;
+    }
+
+    CBigNum bnCoinDayWeight = CBigNum(nValue) * nTimeWeight / COIN / (24 * 60 * 60);
+    nWeight = bnCoinDayWeight.getuint64();
+}
+
+
+// NovaCoin: get current stake miner statistics
+void CWallet::GetStakeStats(float &nKernelsRate, float &nCoinDaysRate)
+{
+    static uint64_t nLastKernels = 0, nLastCoinDays = 0;
+    static float nLastKernelsRate = 0, nLastCoinDaysRate = 0;
+    static int64_t nLastTime = GetTime();
+
+    if (nKernelsTried < nLastKernels)
+    {
+        nLastKernels = 0;
+        nLastCoinDays = 0;
+
+        nLastTime = GetTime();
+    }
+
+    int64_t nInterval = GetTime() - nLastTime;
+    //if (nKernelsTried > 1000 && nInterval > 5)
+    if (nInterval > 10)
+    {
+        nKernelsRate = nLastKernelsRate = ( nKernelsTried - nLastKernels ) / (float) nInterval;
+        nCoinDaysRate = nLastCoinDaysRate = ( nCoinDaysTried - nLastCoinDays ) / (float) nInterval;
+
+        nLastKernels = nKernelsTried;
+        nLastCoinDays = nCoinDaysTried;
+        nLastTime = GetTime();
+    }
+    else
+    {
+        nKernelsRate = nLastKernelsRate;
+        nCoinDaysRate = nLastCoinDaysRate;
+    }
+}
 bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int64 nSearchInterval, CTransaction& txNew)
 {
     // The following split & combine thresholds are important to security
@@ -1618,7 +1667,7 @@ string CWallet::SendMoney(CScript scriptPubKey, int64 nValue, CWalletTx& wtxNew,
         printf("SendMoney() : %s", strError.c_str());
         return strError;
     }
-    if (fWalletUnlockMintOnly)
+    if (fWalletUnlockStakingOnly)
     {
         string strError = _("Error: Wallet unlocked for block minting only, unable to create transaction.");
         printf("SendMoney() : %s", strError.c_str());
