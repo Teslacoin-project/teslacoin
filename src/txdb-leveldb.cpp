@@ -332,6 +332,10 @@ bool CTxDB::LoadBlockIndex()
     CDataStream ssStartKey(SER_DISK, CLIENT_VERSION);
     ssStartKey << make_pair(string("blockindex"), uint256(0));
     iterator->Seek(ssStartKey.str());
+    
+    
+    if (fVerifyBlockHashOnLoad)
+        printf("LoadBlockIndex() : Verifying Block Hashes.\n");
     // Now read each entry.
     while (iterator->Valid())
     {
@@ -342,14 +346,29 @@ bool CTxDB::LoadBlockIndex()
         ssValue.write(iterator->value().data(), iterator->value().size());
         string strType;
         ssKey >> strType;
+        
         // Did we reach the end of the data to read?
         if (fRequestShutdown || strType != "blockindex")
             break;
+        
+        uint256 blockHash;
+        ssKey >> blockHash;
+        
         CDiskBlockIndex diskindex;
         ssValue >> diskindex;
-
-        uint256 blockHash = diskindex.GetBlockHash();
-
+        
+        if (fVerifyBlockHashOnLoad && blockHash != diskindex.GetBlockHash())
+        {
+            uint256 blockHashRegen = diskindex.GetBlockHash();
+            
+            if (blockHash != blockHashRegen)
+            {
+                blockHash = blockHashRegen;
+                printf("Warning: LoadBlockIndex() : Block Hash mismatch at %d\n", diskindex.nHeight);
+            }
+        }
+        
+        
         // Construct block index object
         CBlockIndex* pindexNew    = InsertBlockIndex(blockHash);
         pindexNew->pprev          = InsertBlockIndex(diskindex.hashPrev);
@@ -369,7 +388,7 @@ bool CTxDB::LoadBlockIndex()
         pindexNew->nTime          = diskindex.nTime;
         pindexNew->nBits          = diskindex.nBits;
         pindexNew->nNonce         = diskindex.nNonce;
-
+        
         // Watch for genesis block
         if (pindexGenesisBlock == NULL && blockHash == (!fTestNet ? hashGenesisBlock : hashGenesisBlockTestNet))
             pindexGenesisBlock = pindexNew;
@@ -382,7 +401,7 @@ bool CTxDB::LoadBlockIndex()
         // NovaCoin: build setStakeSeen
         if (pindexNew->IsProofOfStake())
             setStakeSeen.insert(make_pair(pindexNew->prevoutStake, pindexNew->nStakeTime));
-
+        
         iterator->Next();
     }
     delete iterator;
@@ -398,17 +417,18 @@ bool CTxDB::LoadBlockIndex()
         CBlockIndex* pindex = item.second;
         vSortedByHeight.push_back(make_pair(pindex->nHeight, pindex));
     }
+    
     sort(vSortedByHeight.begin(), vSortedByHeight.end());
     BOOST_FOREACH(const PAIRTYPE(int, CBlockIndex*)& item, vSortedByHeight)
     {
         CBlockIndex* pindex = item.second;
-        pindex->bnChainTrust = (pindex->pprev ? pindex->pprev->bnChainTrust : 0) + pindex->GetBlockTrust();
+        pindex->nChainTrust = (pindex->pprev ? pindex->pprev->nChainTrust : 0) + pindex->GetBlockTrust();
         // NovaCoin: calculate stake modifier checksum
         pindex->nStakeModifierChecksum = GetStakeModifierChecksum(pindex);
         if (!CheckStakeModifierCheckpoints(pindex->nHeight, pindex->nStakeModifierChecksum))
             return error("CTxDB::LoadBlockIndex() : Failed stake modifier checkpoint height=%d, modifier=0x%016"PRI64x, pindex->nHeight, pindex->nStakeModifier);
     }
-
+    
     // Load hashBestChain pointer to end of best chain
     if (!ReadHashBestChain(hashBestChain))
     {
@@ -420,10 +440,10 @@ bool CTxDB::LoadBlockIndex()
         return error("CTxDB::LoadBlockIndex() : hashBestChain not found in the block index");
     pindexBest = mapBlockIndex[hashBestChain];
     nBestHeight = pindexBest->nHeight;
-    bnBestChainTrust = pindexBest->bnChainTrust;
+    nBestChainTrust = pindexBest->nChainTrust;
 
     printf("LoadBlockIndex(): hashBestChain=%s  height=%d  trust=%s  date=%s\n",
-      hashBestChain.ToString().substr(0,20).c_str(), nBestHeight, CBigNum(bnBestChainTrust).ToString().c_str(),
+      hashBestChain.ToString().substr(0,20).c_str(), nBestHeight, CBigNum(nBestChainTrust).ToString().c_str(),
       DateTimeStrFormat("%x %H:%M:%S", pindexBest->GetBlockTime()).c_str());
 
     // NovaCoin: load hashSyncCheckpoint
@@ -434,6 +454,7 @@ bool CTxDB::LoadBlockIndex()
     // Load bnBestInvalidTrust, OK if it doesn't exist
     CBigNum bnBestInvalidTrust;
     ReadBestInvalidTrust(bnBestInvalidTrust);
+    nBestInvalidTrust = bnBestInvalidTrust.getuint256();
 
     // Verify blocks in the best chain
     int nCheckLevel = GetArg("-checklevel", 1);
