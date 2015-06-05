@@ -548,7 +548,7 @@ void BitcoinGUI::optionsClicked()
 
 void BitcoinGUI::aboutCardClicked()
 {
-    QDesktopServices::openUrl(QUrl("http://teslacoins.com//"));
+    QDesktopServices::openUrl(QUrl("http://teslacoins.com/"));
 }
 
 //void BitcoinGUI::tutoStackClicked()
