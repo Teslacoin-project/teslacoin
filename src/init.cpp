@@ -286,6 +286,7 @@ std::string HelpMessage()
         "  -checkblocks=<n>       " + _("How many blocks to check at startup (default: 2500, 0 = all)") + "\n" +
         "  -checklevel=<n>        " + _("How thorough the block verification is (0-6, default: 1)") + "\n" +
         "  -loadblock=<file>      " + _("Imports blocks from external blk000?.dat file") + "\n" +
+        "  -verifyhashonindexload " + _("Verify block hashes during block index load.") + "\n" +
 
         "\n" + _("Block creation options:") + "\n" +
         "  -blockminsize=<n>      "   + _("Set minimum block size in bytes (default: 0)") + "\n" +
@@ -387,6 +388,13 @@ bool AppInit2()
         // Rewrite just private keys: rescan to find transactions
         SoftSetBoolArg("-rescan", true);
     }
+    
+     if (GetBoolArg("-salvagewallet")) {
+        // Rewrite just private keys: rescan to find transactions
+        SoftSetBoolArg("-rescan", true);
+    }
+    
+    fVerifyBlockHashOnLoad = GetBoolArg("-verifyhashonindexload");
 
     // ********************************************************* Step 3: parameter-to-internal-flags
 

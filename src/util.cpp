@@ -76,9 +76,10 @@ bool fCommandLine = false;
 string strMiscWarning;
 bool fTestNet = false;
 bool fNoListen = false;
-bool fLogTimestamps = false;
+bool fLogTimestamps = true;
 CMedianFilter<int64> vTimeOffsets(200,0);
 bool fReopenDebugLog = false;
+bool fVerifyBlockHashOnLoad = false;
 
 // Init OpenSSL library multithreading support
 static CCriticalSection** ppmutexOpenSSL;
